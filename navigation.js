@@ -18,7 +18,7 @@ const Navigation = () => {
         headerShown: false
     }
 
-    const [currentRoute, setCurrentRoute] = React.useState("Draw");
+    const [currentRoute, setCurrentRoute] = React.useState("MainPage");
 
     const handleNavigationStateChange = (state) => {
         if (state && state.routes && state.routes.length > 0) {
@@ -30,7 +30,7 @@ const Navigation = () => {
         <NavigationContainer onStateChange={handleNavigationStateChange}>
             <LanguageProvider>
                 <ThemeProvider>
-                    <Stack.Navigator initialRouteName="Draw" screenOptions={screenOptions} >
+                    <Stack.Navigator initialRouteName="MainPage" screenOptions={screenOptions} >
                         <Stack.Screen name="MainPage" component={MainPage} />
                         <Stack.Screen name="Draw" component={Draw} />
                     </Stack.Navigator>

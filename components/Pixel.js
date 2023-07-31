@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
+import { Text } from 'react-native';
+import { TouchableOpacity, Dimensions } from 'react-native';
 
-const Pixel = ({ item }) => {
+const { width } = Dimensions.get("screen")
+
+const Pixel = ({ row, col, color, key, onPress }) => {
   return (
-    <TouchableOpacity style={{ height: 50, width: 50, backgroundColor: "red" }} backgroundColor={"red"}>
-
+    <TouchableOpacity style={{ height: ((width / row) - 20), width: ((width / col) - 20), backgroundColor: color, margin: 10, }}>
     </TouchableOpacity>
   )
 }
 
-export default Pixel
+export default Pixel;

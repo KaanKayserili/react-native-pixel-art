@@ -1,18 +1,46 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import Pixel from "../components/Pixel";
-
+import React from 'react';
+import { Dimensions } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import DrawHeader from '../components/DrawHeader';
+const { width } = Dimensions.get("screen")
 const Draw = () => {
-  const [data, setData] = useState(Array.from({ length: 16 }, (_, index) => index));
-  
+  const numRows = 5; // Değişken olarak istediğiniz sayıyı girebilirsiniz
+  const numColumns = 5; // Değişken olarak istediğiniz sayıyı girebilirsiniz
+
+  const renderCell = (row, col) => {
+    return (
+      <TouchableOpacity
+        key={`${row}-${col}`}
+        style={[styles.cell, { width: ((width / numRows) - 2), height: ((width / numRows) - 2) }]}
+        onPress={() => handleCellPress(row, col)}>
+      </TouchableOpacity>
+    );
+  };
+
+  const handleCellPress = (row, col) => {
+    alert(`Tıklanan hücre: (${row}, ${col})`);
+  };
+
+  const renderMatrix = () => {
+    const matrix = [];
+    for (let row = 0; row < numRows; row++) {
+      const rowCells = [];
+      for (let col = 0; col < numColumns; col++) {
+        rowCells.push(renderCell(row, col));
+      }
+      matrix.push(
+        <View key={row} style={styles.row}>
+          {rowCells}
+        </View>
+      );
+    }
+    return matrix;
+  };
+
   return (
     <View style={styles.container}>
-      {data.map((item, index) => (
-        <View key={index} style={styles.box}>
-          {/* Burada kutucuğun içeriğini gösterebilirsiniz, örneğin: */}
-          {/* <Text>{item}</Text> */}
-        </View>
-      ))}
+      <DrawHeader />
+      {renderMatrix()}
     </View>
   );
 };
@@ -20,14 +48,17 @@ const Draw = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column', // Alt alta sıralamak için 'column' kullanıyoruz
-    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  box: {
-    width: '20%', // 4 kutucuğu yan yana sıralamak için yüzde değeri kullanıyoruz
-    aspectRatio: 1, // Kare şeklinde kutucuklar oluşturmak için aspectRatio kullanıyoruz
-    backgroundColor: 'red',
-    margin: 5, // Kutucuklar arasında boşluk bırakmak için margin ekliyoruz
+  row: {
+    flexDirection: 'row',
+  },
+  cell: {
+    margin: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "red"
   },
 });
 
