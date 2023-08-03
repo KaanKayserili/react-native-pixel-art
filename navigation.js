@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 
-import Draw from "./screens/Draw"
+import { Draw } from "./screens/Draw"
 import MainPage from "./screens/MainPage"
 
 import { LanguageProvider } from "./utils/LanguageProvider";
