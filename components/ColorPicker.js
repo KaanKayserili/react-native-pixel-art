@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ColorPicker from 'react-native-wheel-color-picker';
 import { TextInput } from 'react-native';
 
@@ -7,6 +7,16 @@ const { width, height } = Dimensions.get("screen");
 
 export const ColorPickerComponent = ({ color, setColor, setOpenColorPicker }) => {
   const [newColor, setNewColor] = useState(color);
+  const [inputColor, setInputColor] = useState(color);
+
+  const handleInputChange = (newValue) => {
+    setInputColor(newValue);
+  };
+
+  const handlePickerChange = (newValue) => {
+    setNewColor(newValue);
+    setInputColor(newValue);
+  };
 
   return (
     <View style={{
@@ -25,12 +35,12 @@ export const ColorPickerComponent = ({ color, setColor, setOpenColorPicker }) =>
         sliderHidden={false}
         swatches={false}
         row={false}
-        onColorChange={(newColor) => setNewColor(newColor)}
+        onColorChange={handlePickerChange}
         style={{ width: width * 0.6 }}
       />
-      <Text>{newColor}</Text>
+      <TextInput value={inputColor} onChangeText={handleInputChange} />
 
-      <TouchableOpacity onPress={() => { setColor(newColor); setOpenColorPicker(false); }} style={
+      <TouchableOpacity onPress={() => { setColor(inputColor); setOpenColorPicker(false); }} style={
         { paddingVertical: 5, paddingHorizontal: 15, backgroundColor: "white", borderRadius: 20, borderWidth: 2, borderColor: "black", marginTop: 20 }
       }>
         <Text style={{ fontSize: 20, fontWeight: "bold" }}>Okay</Text>

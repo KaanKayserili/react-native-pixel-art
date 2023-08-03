@@ -11,7 +11,7 @@ const MainPage = ({ navigation }) => {
 
     const goDraw = () => {
         if (number !== "" && bgColor !== "") {
-            navigation.navigate("Draw", { number: number, bgColor: bgColor });
+            navigation.navigate("Draw", { number: parseInt(number), bgColor: bgColor });
         }
         else {
             alert("Yanlış veya eksik giriş yaptınız.")

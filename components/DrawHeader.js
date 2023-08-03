@@ -1,21 +1,21 @@
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import React from 'react'
 import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native'
-const { width } = Dimensions.get("screen")
+const { width, height } = Dimensions.get("screen")
 
-const DrawHeader = ({ navigation, setOpenColorPicker, setDownload, colorPicker, setOpenResize, setColorPicker, color }) => {
+const DrawHeader = ({ navigation, setOpenColorPicker, handleSave, colorPicker, setOpenResize, setColorPicker, color }) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => { setOpenColorPicker(true); setColorPicker(false); }} style={styles.button}>
-                <Ionicons name='color-palette-outline' size={width * 0.1} color={"#414141"} style={[styles.buttonText, { backgroundColor: color }]} />
+            <TouchableOpacity onPress={() => { setOpenColorPicker(true); setColorPicker(false); }} style={[styles.button, { backgroundColor: color }]}>
+                <Ionicons name='color-palette-outline' size={width * 0.1} color={"#414141"} style={styles.buttonText} />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => { setColorPicker(true); setOpenColorPicker(false); }} style={styles.button}>
+            <TouchableOpacity onPress={() => { setColorPicker(true); setOpenColorPicker(false); }} style={[styles.button, colorPicker === true ? { backgroundColor: color } : { backgroundColor: "white" }]}>
                 <FontAwesome name='eyedropper' size={width * 0.1} color={"#414141"}
-                    style={[styles.buttonText, colorPicker === true ? { backgroundColor: color } : { backgroundColor: "white" }]} />
+                    style={styles.buttonText} />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => { setDownload(true); console.log("İndirildi") }} style={styles.button}>
+            <TouchableOpacity onPress={handleSave} style={styles.button}>
                 <Ionicons name='download-outline' size={width * 0.1} color={"#414141"} style={styles.buttonText} />
             </TouchableOpacity>
 
@@ -36,16 +36,20 @@ const styles = StyleSheet.create({
     container: {
         width: width,
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        paddingTop: height * 0.04,
+        paddingBottom: height * 0.0075,
+        borderBottomColor: "#414141",
+        borderBottomWidth: 2,
     },
     button: {
         alignItems: "center",
         justifyContent: "center",
+        padding: width * 0.02,
+        borderWidth: 2,
+        borderRadius: 30,
     },
     buttonText: {
-        padding: 10,
-        borderWidth: 2,
         borderColor: "#414141",
-        borderRadius: 50,
     },
 })

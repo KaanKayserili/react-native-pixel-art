@@ -5,7 +5,7 @@ import { TextInput } from 'react-native'
 const TextInputComponent = ({ set, get, width, keyboardType }) => {
     return (
         <TextInput keyboardType={keyboardType}
-            value={get} onChangeText={(get) => set(get)}
+            value={get} onChangeText={(get) => { set(keyboardType === "numeric" ? parseInt(get) : get) }}
             style={[styles.input, { width: width }]} placeholderTextColor={"gray"} />
     )
 }

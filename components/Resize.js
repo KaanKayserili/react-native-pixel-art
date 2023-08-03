@@ -13,7 +13,7 @@ const Resize = ({ number, setNumber, setOpenResize, width, height }) => {
 
       <TextInputComponent set={setNewSize} get={newSize} width={width * 0.7} keyboardType={"numeric"} />
 
-      <TouchableOpacity onPress={() => { setNumber(newSize); setOpenResize(false); }} style={
+      <TouchableOpacity onPress={() => { setNumber(parseInt(newSize)); setOpenResize(false); }} style={
         { paddingVertical: 5, paddingHorizontal: 15, backgroundColor: "white", borderRadius: 20, borderWidth: 2, borderColor: "black", marginTop: 20 }
       }>
         <Text style={{ fontSize: 20, fontWeight: "bold" }}>Okay</Text>
