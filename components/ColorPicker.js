@@ -1,7 +1,8 @@
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import ColorPicker from 'react-native-wheel-color-picker';
-import { TextInput } from 'react-native';
+
+import TextInputComponent from './TextInputComponent';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -36,15 +37,24 @@ export const ColorPickerComponent = ({ color, setColor, setOpenColorPicker }) =>
         swatches={false}
         row={false}
         onColorChange={handlePickerChange}
-        style={{ width: width * 0.6 }}
+        style={{ width: width * 0.6, marginBottom: height * 0.025 }}
       />
-      <TextInput value={inputColor} onChangeText={handleInputChange} />
 
-      <TouchableOpacity onPress={() => { setColor(inputColor); setOpenColorPicker(false); }} style={
-        { paddingVertical: 5, paddingHorizontal: 15, backgroundColor: "white", borderRadius: 20, borderWidth: 2, borderColor: "black", marginTop: 20 }
-      }>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Okay</Text>
-      </TouchableOpacity>
+      <TextInputComponent set={setInputColor} get={inputColor} width={width * 0.4} keyboardType={"default"} />
+
+      <View style={{ width: width * 0.8, flexDirection: "row", justifyContent: "space-around" }}>
+        <TouchableOpacity onPress={() => { setOpenColorPicker(false) }} style={
+          { paddingVertical: 5, paddingHorizontal: 15, backgroundColor: "white", borderRadius: 20, borderWidth: 2, borderColor: "red", marginTop: 20 }
+        }>
+          <Text style={{ fontSize: 20, fontWeight: "bold", color: "red" }}>Close</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => { setColor(inputColor); setOpenColorPicker(false); }} style={
+          { paddingVertical: 5, paddingHorizontal: 15, backgroundColor: "white", borderRadius: 20, borderWidth: 2, borderColor: "green", marginTop: 20 }
+        }>
+          <Text style={{ fontSize: 20, fontWeight: "bold", color: "green" }}>Okay</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
