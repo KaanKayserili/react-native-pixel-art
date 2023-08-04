@@ -10,6 +10,7 @@ import darkColors from '../assets/colors/darkColors';
 import lightColors from '../assets/colors/lightColors';
 import english from '../assets/languages/english';
 import turkish from '../assets/languages/turkish';
+import ButtonComponent from './ButtonComponent';
 
 const { width, height } = Dimensions.get("screen");
 
