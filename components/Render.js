@@ -6,8 +6,6 @@ const { width, height } = Dimensions.get("screen");
 
 const Render = ({ colors, setColors, color, setColor, colorPicker, columnRow, viewRef, setColorPicker }) => {
 
-
-
   const handleCellPress = (row, col) => {
     if (colorPicker === false) {
       const updatedMatrix = [...colors];

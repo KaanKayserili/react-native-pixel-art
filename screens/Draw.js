@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Dimensions, Modal, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 
-import { Saving } from "../utils/Saving"
+import { Saving } from "../utils/Saving";
 
 import { ColorPickerComponent } from '../components/ColorPicker';
 import DrawHeader from '../components/DrawHeader';
-import Resize from '../components/Resize';
 import Render from '../components/Render';
+import Resize from '../components/Resize';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -41,6 +41,7 @@ export const Draw = ({ navigation, route }) => {
         <TouchableWithoutFeedback onPress={() => setOpenColorPicker(false)}>
           <View style={{ flex: 1, position: "absolute", width: width, height: height }} />
         </TouchableWithoutFeedback>
+
         <ColorPickerComponent color={color} setColor={setColor} setOpenColorPicker={setOpenColorPicker} />
       </Modal>
 
@@ -48,7 +49,8 @@ export const Draw = ({ navigation, route }) => {
         <TouchableWithoutFeedback onPress={() => setOpenResize(false)}>
           <View style={{ flex: 1, position: "absolute", width: width, height: height }} />
         </TouchableWithoutFeedback>
-        <Resize number={columnRow} setNumber={setColumnRow} setOpenResize={setOpenResize} width={width} height={height} />
+
+        <Resize columnRow={columnRow} setColumnRow={setColumnRow} setOpenResize={setOpenResize} width={width} height={height} />
       </Modal>
 
       <DrawHeader navigation={navigation} setOpenColorPicker={setOpenColorPicker} handleSave={handleSave} colorPicker={colorPicker}
