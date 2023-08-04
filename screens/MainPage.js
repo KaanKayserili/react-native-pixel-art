@@ -11,8 +11,9 @@ import turkish from '../assets/languages/turkish';
 
 import { useLanguage } from '../utils/LanguageProvider';
 import { useTheme } from '../utils/ThemeProvider';
+import ButtonComponent from '../components/ButtonComponent';
 
-const { width } = Dimensions.get("screen")
+const { width } = Dimensions.get("screen");
 
 const MainPage = ({ navigation }) => {
 
@@ -48,10 +49,13 @@ const MainPage = ({ navigation }) => {
                 <TextInputComponent set={setBgColor} get={bgColor} width={width * 0.7} keyboardType={"default"} />
             </View>
 
+            <ButtonComponent text={lingo.Start} onPress={goDraw} theme={theme} />
 
-            <TouchableOpacity onPress={goDraw} style={styles.button}>
-                <Text style={styles.buttonText}>{lingo.Start}</Text>
-            </TouchableOpacity>
+            <View style={{ flexDirection: "row", justifyContent: "space-around", alignItems: "center", width: width }}>
+                <ButtonComponent text={lingo.English} onPress={goDraw} theme={theme} />
+
+                <ButtonComponent text={lingo.Turkish} onPress={goDraw} theme={theme} />
+            </View>
         </View>
     )
 }
@@ -68,22 +72,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "500",
         color: "#414141",
-    },
-    button: {
-        paddingHorizontal: 15,
-        paddingVertical: 7.5,
-        backgroundColor: "white",
-        borderRadius: 27.5,
-        borderWidth: 2,
-        borderColor: "#414141",
-        marginTop: 20,
-        width: width * 0.6,
-        marginLeft: width * 0.2,
-    },
-    buttonText: {
-        textAlign: "center",
-        fontWeight: "500",
-        fontSize: 22,
-        color: "#414141"
     },
 })

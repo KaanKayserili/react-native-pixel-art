@@ -56,17 +56,8 @@ export const ColorPickerComponent = ({ color, setColor, setOpenColorPicker }) =>
       <TextInputComponent set={setInputColor} get={inputColor} width={width * 0.4} keyboardType={"default"} />
 
       <View style={{ width: width * 0.8, flexDirection: "row", justifyContent: "space-around" }}>
-        <TouchableOpacity onPress={() => { setOpenColorPicker(false) }} style={
-          { paddingVertical: 5, paddingHorizontal: 15, backgroundColor: "white", borderRadius: 20, borderWidth: 2, borderColor: "red", marginTop: 20 }
-        }>
-          <Text style={{ fontSize: 20, fontWeight: "bold", color: "red" }}>{lingo.Close}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => { setColor(inputColor); setOpenColorPicker(false); }} style={
-          { paddingVertical: 5, paddingHorizontal: 15, backgroundColor: "white", borderRadius: 20, borderWidth: 2, borderColor: "green", marginTop: 20 }
-        }>
-          <Text style={{ fontSize: 20, fontWeight: "bold", color: "green" }}>{lingo.Okay}</Text>
-        </TouchableOpacity>
+        <ButtonComponent text={lingo.Close} onPress={() => { setOpenColorPicker(false) }} theme={theme} />
+        <ButtonComponent text={lingo.Okay} onPress={() => { setColor(inputColor); setOpenColorPicker(false); }} theme={theme} />
       </View>
     </View>
   );

@@ -10,6 +10,7 @@ import turkish from '../assets/languages/turkish';
 
 import { useTheme } from '../utils/ThemeProvider';
 import { useLanguage } from '../utils/LanguageProvider';
+import ButtonComponent from './ButtonComponent';
 
 const Resize = ({ columnRow, setColumnRow, setOpenResize, width, height }) => {
   const [newSize, setNewSize] = useState(columnRow);
@@ -29,11 +30,7 @@ const Resize = ({ columnRow, setColumnRow, setOpenResize, width, height }) => {
 
       <TextInputComponent set={setNewSize} get={newSize} width={width * 0.7} keyboardType={"numeric"} />
 
-      <TouchableOpacity onPress={() => { setColumnRow(parseInt(newSize)); setOpenResize(false); }} style={
-        { paddingVertical: 5, paddingHorizontal: 15, backgroundColor: "white", borderRadius: 20, borderWidth: 2, borderColor: "black", marginTop: 20 }
-      }>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>{lingo.Okay}</Text>
-      </TouchableOpacity>
+      <ButtonComponent onPress={() => { setColumnRow(parseInt(newSize)); setOpenResize(false); }} text={lingo.Okay} theme={theme} />
     </View>
   )
 }

@@ -1,31 +1,23 @@
-import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import React from 'react'
-import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Dimensions, StyleSheet, View } from 'react-native'
+import IconButton from './IconButton'
+import { useTheme } from '../utils/ThemeProvider'
+import darkColors from '../assets/colors/darkColors'
+import lightColors from '../assets/colors/lightColors'
 const { width, height } = Dimensions.get("screen")
 
-const DrawHeader = ({ navigation, setOpenColorPicker, handleSave, colorPicker, setOpenResize, setColorPicker, color }) => {
+const DrawHeader = ({ navigation, setOpenColorPicker, handleSave, setOpenResize, setColorPicker, color }) => {
+
+    const { isDarkMode } = useTheme();
+    const theme = isDarkMode === "true" ? darkColors : lightColors;
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => { setOpenColorPicker(true); setColorPicker(false); }} style={[styles.button, { backgroundColor: color }]}>
-                <Ionicons name='color-palette-outline' size={width * 0.1} color={"#414141"} style={styles.buttonText} />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => { setColorPicker(true); setOpenColorPicker(false); }} style={[styles.button, colorPicker === true ? { backgroundColor: color } : { backgroundColor: "white" }]}>
-                <FontAwesome name='eyedropper' size={width * 0.1} color={"#414141"}
-                    style={styles.buttonText} />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={handleSave} style={styles.button}>
-                <Ionicons name='download-outline' size={width * 0.1} color={"#414141"} style={styles.buttonText} />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => { setOpenResize(true) }} style={styles.button}>
-                <Ionicons name='resize-outline' size={width * 0.1} color={"#414141"} style={styles.buttonText} />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => navigation.navigate("MainPage")} style={styles.button}>
-                <Ionicons name='log-out-outline' size={width * 0.1} color={"#414141"} style={styles.buttonText} />
-            </TouchableOpacity>
+            <IconButton type={"Ionicons"} name={'color-palette-outline'} onPress={() => { setOpenColorPicker(true); setColorPicker(false); }} theme={theme} size={width * 0.1} />
+            <IconButton type={"FontAwesome"} name={'eyedropper'} onPress={() => { setColorPicker(true); setOpenColorPicker(false); }} theme={theme} size={width * 0.1} />
+            <IconButton type={"Ionicons"} name={'download-outline'} onPress={handleSave} theme={theme} size={width * 0.1} />
+            <IconButton type={"Ionicons"} name={'resize-outline'} onPress={() => { setOpenResize(true) }} theme={theme} size={width * 0.1} />
+            <IconButton type={"Ionicons"} name={'log-out-outline'} onPress={() => navigation.navigate("MainPage")} theme={theme} size={width * 0.1} />
         </View>
     )
 }
@@ -41,15 +33,5 @@ const styles = StyleSheet.create({
         paddingBottom: height * 0.0075,
         borderBottomColor: "#414141",
         borderBottomWidth: 2,
-    },
-    button: {
-        alignItems: "center",
-        justifyContent: "center",
-        padding: width * 0.02,
-        borderWidth: 2,
-        borderRadius: 30,
-    },
-    buttonText: {
-        borderColor: "#414141",
     },
 })
