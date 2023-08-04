@@ -56,8 +56,8 @@ export const ColorPickerComponent = ({ color, setColor, setOpenColorPicker }) =>
       <TextInputComponent set={setInputColor} get={inputColor} width={width * 0.4} keyboardType={"default"} />
 
       <View style={{ width: width * 0.8, flexDirection: "row", justifyContent: "space-around" }}>
-        <ButtonComponent text={lingo.Close} onPress={() => { setOpenColorPicker(false) }} theme={theme} />
-        <ButtonComponent text={lingo.Okay} onPress={() => { setColor(inputColor); setOpenColorPicker(false); }} theme={theme} />
+        <ButtonComponent text={lingo.Close} onPress={() => { setOpenColorPicker(false) }} />
+        <ButtonComponent text={lingo.Okay} onPress={() => { setColor(inputColor); setOpenColorPicker(false); }} />
       </View>
     </View>
   );

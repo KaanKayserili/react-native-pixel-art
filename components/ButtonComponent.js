@@ -1,10 +1,17 @@
-import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import darkColors from '../assets/colors/darkColors';
+import lightColors from '../assets/colors/lightColors';
+import { useTheme } from '../utils/ThemeProvider';
 
-const ButtonComponent = ({ onPress, text, theme}) => {
+const ButtonComponent = ({ onPress, text, width }) => {
+
+    const { isDarkMode } = useTheme();
+    const theme = isDarkMode === "true" ? darkColors : lightColors;
+
     return (
-        <TouchableOpacity onPress={onPress} style={styles.button}>
-            <Text style={styles.buttonText}>{lingo.Start}</Text>
+        <TouchableOpacity onPress={onPress} style={[styles.button, { backgroundColor: theme.Background, borderColor: theme.Border, width: width }]}>
+            <Text style={[styles.buttonText, { color: theme.ButtonText }]}>{text}</Text>
         </TouchableOpacity>
     )
 }
@@ -15,18 +22,13 @@ const styles = StyleSheet.create({
     button: {
         paddingHorizontal: 15,
         paddingVertical: 7.5,
-        backgroundColor: "white",
         borderRadius: 27.5,
         borderWidth: 2,
-        borderColor: "#414141",
         marginTop: 20,
-        width: width * 0.6,
-        marginLeft: width * 0.2,
     },
     buttonText: {
         textAlign: "center",
         fontWeight: "500",
         fontSize: 22,
-        color: "#414141"
     },
 })

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import TextInputComponent from "../components/TextInputComponent";
 
@@ -12,7 +12,9 @@ import { useTheme } from '../utils/ThemeProvider';
 import { useLanguage } from '../utils/LanguageProvider';
 import ButtonComponent from './ButtonComponent';
 
-const Resize = ({ columnRow, setColumnRow, setOpenResize, width, height }) => {
+const { width, height } = Dimensions.get("screen")
+
+const Resize = ({ columnRow, setColumnRow, setOpenResize, }) => {
   const [newSize, setNewSize] = useState(columnRow);
 
   const { isDarkMode } = useTheme();
@@ -30,7 +32,7 @@ const Resize = ({ columnRow, setColumnRow, setOpenResize, width, height }) => {
 
       <TextInputComponent set={setNewSize} get={newSize} width={width * 0.7} keyboardType={"numeric"} />
 
-      <ButtonComponent onPress={() => { setColumnRow(parseInt(newSize)); setOpenResize(false); }} text={lingo.Okay} theme={theme} />
+      <ButtonComponent onPress={() => { setColumnRow(parseInt(newSize)); setOpenResize(false); }} text={lingo.Okay} width={width * 0.35}/>
     </View>
   )
 }

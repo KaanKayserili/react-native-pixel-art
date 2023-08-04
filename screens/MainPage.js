@@ -49,12 +49,14 @@ const MainPage = ({ navigation }) => {
                 <TextInputComponent set={setBgColor} get={bgColor} width={width * 0.7} keyboardType={"default"} />
             </View>
 
-            <ButtonComponent text={lingo.Start} onPress={goDraw} theme={theme} />
+            <View style={{ marginLeft: width * 0.25 }}>
+                <ButtonComponent text={lingo.Start} onPress={goDraw} width={width * 0.5} />
+            </View>
 
             <View style={{ flexDirection: "row", justifyContent: "space-around", alignItems: "center", width: width }}>
-                <ButtonComponent text={lingo.English} onPress={goDraw} theme={theme} />
+                <ButtonComponent text={lingo.English} onPress={goDraw} width={width * 0.35} />
 
-                <ButtonComponent text={lingo.Turkish} onPress={goDraw} theme={theme} />
+                <ButtonComponent text={lingo.Turkish} onPress={goDraw} width={width * 0.35} />
             </View>
         </View>
     )

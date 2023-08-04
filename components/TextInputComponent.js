@@ -1,12 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { TextInput } from 'react-native'
+import { Dimensions, StyleSheet, TextInput } from 'react-native'
+const { width } = Dimensions.get("screen")
 
-const TextInputComponent = ({ set, get, width, keyboardType }) => {
+const TextInputComponent = ({ set, get, keyboardType }) => {
     return (
         <TextInput keyboardType={keyboardType}
             value={get} onChangeText={(get) => { set(keyboardType === "numeric" ? parseInt(get) : get) }}
-            style={[styles.input, { width: width }]} placeholderTextColor={"gray"} />
+            style={[styles.input, { width: width * 0.7 }]} placeholderTextColor={"gray"} />
     )
 }
 

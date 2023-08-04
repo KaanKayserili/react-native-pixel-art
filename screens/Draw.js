@@ -50,7 +50,7 @@ export const Draw = ({ navigation, route }) => {
           <View style={{ flex: 1, position: "absolute", width: width, height: height }} />
         </TouchableWithoutFeedback>
 
-        <Resize columnRow={columnRow} setColumnRow={setColumnRow} setOpenResize={setOpenResize} width={width} height={height} />
+        <Resize columnRow={columnRow} setColumnRow={setColumnRow} setOpenResize={setOpenResize} />
       </Modal>
 
       <DrawHeader navigation={navigation} setOpenColorPicker={setOpenColorPicker} handleSave={handleSave} colorPicker={colorPicker}
